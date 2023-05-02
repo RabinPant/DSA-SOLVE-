@@ -1,29 +1,32 @@
+import java.util.Arrays;
+
 public class DataStructure {
 
-        public static void main(String[] args) {
+       public static void main(){
+            int arr[] = {1,2,3,4,5,6,7};
 
-            int arr[] = {2,1,0,51,6};
+            rotate(arr,3);
+       }
 
-            int i = secondLargest(arr);
-            System.out.println("The second largest number in the given array is: "+ i);
+       public static void rotate(int[] nums, int k){
+           
+           k = k% nums.length;
+           reverse(nums,0,nums.length-1);
+           reverse(nums,0,k-1);
+           reverse(nums,k,nums.length-1);
 
-        }
+           System.out.println(Arrays.toString(nums));
+       }
 
-        static int secondLargest(int []arr){
-            int largest  = Integer.MIN_VALUE;
-            int secondLargest = Integer.MIN_VALUE;
+       static void reverse(int[]nums, int start, int end){
 
-            for(int i=0;i<arr.length;i++){
-
-                if(arr[i]>largest){
-                    secondLargest = largest;
-                    largest = arr[i];
-                }else if(arr[i]<largest && arr[i]>secondLargest){
-                    secondLargest = arr[i];
-                }
-
-            }
-            return secondLargest;
-        }
+           while(start < end){
+               int temp = nums[start];
+               nums[start] = nums[end];
+               nums[end]=temp;
+               start++;
+               end--;
+           }
+       }
 
 }
