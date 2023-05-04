@@ -2,31 +2,32 @@ import java.util.Arrays;
 
 public class DataStructure {
 
-       public static void main(){
-            int arr[] = {1,2,3,4,5,6,7};
+    public static void main(String[] args) {
+        int arr[] = {4,2,1};
 
-            rotate(arr,3);
-       }
+        boolean b = checkPossibility(arr);
 
-       public static void rotate(int[] nums, int k){
-           
-           k = k% nums.length;
-           reverse(nums,0,nums.length-1);
-           reverse(nums,0,k-1);
-           reverse(nums,k,nums.length-1);
+        System.out.println(b);
+    }
+       public static boolean checkPossibility(int []arr){
 
-           System.out.println(Arrays.toString(nums));
-       }
+           boolean changed = false;
 
-       static void reverse(int[]nums, int start, int end){
+           for(int i=0;i<arr.length-1;i++){
 
-           while(start < end){
-               int temp = nums[start];
-               nums[start] = nums[end];
-               nums[end]=temp;
-               start++;
-               end--;
+               if(arr[i]<=arr[i+1]){
+                   continue;
+               }
+               if(changed)
+                   return false;
+               if(i==0 || arr[i+1]>=arr[i-1])
+                   arr[i] = arr[i+1];
+               else
+                   arr[i+1] = arr[i];
+
+               changed = true;
            }
-       }
 
+           return true;
+       }
 }
