@@ -1,33 +1,26 @@
+import com.sun.xml.internal.ws.encoding.MtomCodec;
+
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class DataStructure {
 
-    public static void main(String[] args) {
-        int arr[] = {4,2,1};
+    static int maxDiff(int[]arr, int arr_length){
 
-        boolean b = checkPossibility(arr);
+        int maxDiff = arr[1]-arr[0];
+        int min = arr[0];
+        int res = 0;
+        for(int i=1;i<arr_length;i++){
+            res = Math.max(res,arr[i]-min);
+            min = Math.min(min,arr[i]);
+        }
 
-        System.out.println(b);
+        return res;
     }
-       public static boolean checkPossibility(int []arr){
+    public static void main(String[] args) {
 
-           boolean changed = false;
-
-           for(int i=0;i<arr.length-1;i++){
-
-               if(arr[i]<=arr[i+1]){
-                   continue;
-               }
-               if(changed)
-                   return false;
-               if(i==0 || arr[i+1]>=arr[i-1])
-                   arr[i] = arr[i+1];
-               else
-                   arr[i+1] = arr[i];
-
-               changed = true;
-           }
-
-           return true;
-       }
+        int arr[] = {2,3,10,6,4,8,1};
+        int result = maxDiff(arr, arr.length);
+        System.out.println(result);
+    }
 }
