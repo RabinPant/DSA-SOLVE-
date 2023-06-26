@@ -1,29 +1,33 @@
+import java.util.Arrays;
+
 public class DataStructure {
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
+        int arr[] = {4,2,1};
 
-            int arr[] = {2,1,0,51,6};
+        boolean b = checkPossibility(arr);
 
-            int i = secondLargest(arr);
-            System.out.println("The second largest number in the given array is: "+ i);
+        System.out.println(b);
+    }
+       public static boolean checkPossibility(int []arr){
 
-        }
+           boolean changed = false;
 
-        static int secondLargest(int []arr){
-            int largest  = Integer.MIN_VALUE;
-            int secondLargest = Integer.MIN_VALUE;
+           for(int i=0;i<arr.length-1;i++){
 
-            for(int i=0;i<arr.length;i++){
+               if(arr[i]<=arr[i+1]){
+                   continue;
+               }
+               if(changed)
+                   return false;
+               if(i==0 || arr[i+1]>=arr[i-1])
+                   arr[i] = arr[i+1];
+               else
+                   arr[i+1] = arr[i];
 
-                if(arr[i]>largest){
-                    secondLargest = largest;
-                    largest = arr[i];
-                }else if(arr[i]<largest && arr[i]>secondLargest){
-                    secondLargest = arr[i];
-                }
+               changed = true;
+           }
 
-            }
-            return secondLargest;
-        }
-
+           return true;
+       }
 }
