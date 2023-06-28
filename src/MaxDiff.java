@@ -1,10 +1,4 @@
-import com.sun.xml.internal.ws.encoding.MtomCodec;
-
-import java.util.Arrays;
-import java.util.Scanner;
-
-public class DataStructure {
-
+public class MaxDiff {
     static int maxDiff(int[]arr, int arr_length){
 
         int maxDiff = arr[1]-arr[0];
